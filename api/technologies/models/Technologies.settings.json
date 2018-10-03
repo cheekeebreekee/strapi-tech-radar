@@ -13,10 +13,10 @@
   "type": "string"
 },
 "ghstars": {
-  "type": "number"
+  "type": "integer"
 },
 "rating": {
-  "type": "number"
+  "type": "integer"
 }
   }
 }
