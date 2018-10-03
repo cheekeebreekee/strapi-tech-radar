@@ -1,0 +1,22 @@
+{
+  "connection": "default",
+  "collectionName": "",
+  "info": {
+    "name": "technologies",
+    "description": ""
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "name": {
+  "type": "string"
+},
+"ghstars": {
+  "type": "number"
+},
+"rating": {
+  "type": "number"
+}
+  }
+}
