@@ -1,0 +1,760 @@
+type Category {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  posts(sort: String, limit: Int, start: Int, where: JSON): [Post]
+}
+
+type CategoryAggregator {
+  count: Int
+}
+
+type CategoryConnection {
+  values: [Category]
+  groupBy: CategoryGroupBy
+  aggregate: CategoryAggregator
+}
+
+type CategoryConnection_id {
+  key: ID
+  connection: CategoryConnection
+}
+
+type CategoryConnectionCreatedAt {
+  key: DateTime
+  connection: CategoryConnection
+}
+
+type CategoryConnectionName {
+  key: String
+  connection: CategoryConnection
+}
+
+type CategoryConnectionUpdatedAt {
+  key: DateTime
+  connection: CategoryConnection
+}
+
+type CategoryGroupBy {
+  _id: [CategoryConnection_id]
+  createdAt: [CategoryConnectionCreatedAt]
+  updatedAt: [CategoryConnectionUpdatedAt]
+  name: [CategoryConnectionName]
+}
+
+input CategoryInput {
+  name: String
+  posts: [ID]
+}
+
+input createCategoryInput {
+  data: CategoryInput
+}
+
+type createCategoryPayload {
+  category: Category
+}
+
+input createPostInput {
+  data: PostInput
+}
+
+type createPostPayload {
+  post: Post
+}
+
+input createProductInput {
+  data: ProductInput
+}
+
+type createProductPayload {
+  product: Product
+}
+
+input createTagInput {
+  data: TagInput
+}
+
+type createTagPayload {
+  tag: Tag
+}
+
+input createTechnologiesInput {
+  data: TechnologiesInput
+}
+
+type createTechnologiesPayload {
+  technology: Technologies
+}
+
+input createUserInput {
+  data: UserInput
+}
+
+type createUserPayload {
+  user: UsersPermissionsUser
+}
+
+"""
+The `DateTime` scalar represents a date and time following the ISO 8601 standard
+"""
+scalar DateTime
+
+input deleteCategoryInput {
+  where: InputID
+}
+
+type deleteCategoryPayload {
+  category: Category
+}
+
+input deletePostInput {
+  where: InputID
+}
+
+type deletePostPayload {
+  post: Post
+}
+
+input deleteProductInput {
+  where: InputID
+}
+
+type deleteProductPayload {
+  product: Product
+}
+
+input deleteTagInput {
+  where: InputID
+}
+
+type deleteTagPayload {
+  tag: Tag
+}
+
+input deleteTechnologiesInput {
+  where: InputID
+}
+
+type deleteTechnologiesPayload {
+  technology: Technologies
+}
+
+input deleteUserInput {
+  where: InputID
+}
+
+type deleteUserPayload {
+  user: UsersPermissionsUser
+}
+
+input FileInput {
+  name: String!
+  hash: String!
+  ext: String
+  mime: String!
+  size: String!
+  url: String!
+  provider: String!
+  related: [ID]
+}
+
+input InputID {
+  id: ID!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+union Morph = Category | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnection_id | CategoryConnectionCreatedAt | CategoryConnectionUpdatedAt | CategoryConnectionName | Post | createPostPayload | updatePostPayload | deletePostPayload | PostConnection | PostAggregator | PostGroupBy | PostConnection_id | PostConnectionCreatedAt | PostConnectionUpdatedAt | PostConnectionTitle | PostConnectionContent | PostConnectionCategory | Product | createProductPayload | updateProductPayload | deleteProductPayload | ProductConnection | ProductAggregator | ProductGroupBy | ProductConnection_id | ProductConnectionCreatedAt | ProductConnectionUpdatedAt | ProductConnectionName | ProductConnectionDescription | ProductConnectionImage | Tag | createTagPayload | updateTagPayload | deleteTagPayload | TagConnection | TagAggregator | TagGroupBy | TagConnection_id | TagConnectionCreatedAt | TagConnectionUpdatedAt | TagConnectionName | Technologies | createTechnologiesPayload | updateTechnologiesPayload | deleteTechnologiesPayload | TechnologiesConnection | TechnologiesAggregator | TechnologiesAggregatorSum | TechnologiesAggregatorAvg | TechnologiesAggregatorMin | TechnologiesAggregatorMax | TechnologiesGroupBy | TechnologiesConnection_id | TechnologiesConnectionCreatedAt | TechnologiesConnectionUpdatedAt | TechnologiesConnectionName | TechnologiesConnectionGhstars | TechnologiesConnectionRating | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole
+
+type Mutation {
+  createCategory(input: createCategoryInput): createCategoryPayload
+  updateCategory(input: updateCategoryInput): updateCategoryPayload
+  deleteCategory(input: deleteCategoryInput): deleteCategoryPayload
+  createPost(input: createPostInput): createPostPayload
+  updatePost(input: updatePostInput): updatePostPayload
+  deletePost(input: deletePostInput): deletePostPayload
+  createProduct(input: createProductInput): createProductPayload
+  updateProduct(input: updateProductInput): updateProductPayload
+  deleteProduct(input: deleteProductInput): deleteProductPayload
+  createTag(input: createTagInput): createTagPayload
+  updateTag(input: updateTagInput): updateTagPayload
+  deleteTag(input: deleteTagInput): deleteTagPayload
+  createTechnologies(input: createTechnologiesInput): createTechnologiesPayload
+  updateTechnologies(input: updateTechnologiesInput): updateTechnologiesPayload
+  deleteTechnologies(input: deleteTechnologiesInput): deleteTechnologiesPayload
+  createUser(input: createUserInput): createUserPayload
+  updateUser(input: updateUserInput): updateUserPayload
+  deleteUser(input: deleteUserInput): deleteUserPayload
+}
+
+type Post {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String
+  content: String
+  category: Category
+  tags(sort: String, limit: Int, start: Int, where: JSON): [Tag]
+}
+
+type PostAggregator {
+  count: Int
+}
+
+type PostConnection {
+  values: [Post]
+  groupBy: PostGroupBy
+  aggregate: PostAggregator
+}
+
+type PostConnection_id {
+  key: ID
+  connection: PostConnection
+}
+
+type PostConnectionCategory {
+  key: ID
+  connection: PostConnection
+}
+
+type PostConnectionContent {
+  key: String
+  connection: PostConnection
+}
+
+type PostConnectionCreatedAt {
+  key: DateTime
+  connection: PostConnection
+}
+
+type PostConnectionTitle {
+  key: String
+  connection: PostConnection
+}
+
+type PostConnectionUpdatedAt {
+  key: DateTime
+  connection: PostConnection
+}
+
+type PostGroupBy {
+  _id: [PostConnection_id]
+  createdAt: [PostConnectionCreatedAt]
+  updatedAt: [PostConnectionUpdatedAt]
+  title: [PostConnectionTitle]
+  content: [PostConnectionContent]
+  category: [PostConnectionCategory]
+}
+
+input PostInput {
+  title: String
+  content: String
+  tags: [ID]
+  category: ID
+}
+
+type Product {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  description: String
+  image: UploadFile
+}
+
+type ProductAggregator {
+  count: Int
+}
+
+type ProductConnection {
+  values: [Product]
+  groupBy: ProductGroupBy
+  aggregate: ProductAggregator
+}
+
+type ProductConnection_id {
+  key: ID
+  connection: ProductConnection
+}
+
+type ProductConnectionCreatedAt {
+  key: DateTime
+  connection: ProductConnection
+}
+
+type ProductConnectionDescription {
+  key: String
+  connection: ProductConnection
+}
+
+type ProductConnectionImage {
+  key: ID
+  connection: ProductConnection
+}
+
+type ProductConnectionName {
+  key: String
+  connection: ProductConnection
+}
+
+type ProductConnectionUpdatedAt {
+  key: DateTime
+  connection: ProductConnection
+}
+
+type ProductGroupBy {
+  _id: [ProductConnection_id]
+  createdAt: [ProductConnectionCreatedAt]
+  updatedAt: [ProductConnectionUpdatedAt]
+  name: [ProductConnectionName]
+  description: [ProductConnectionDescription]
+  image: [ProductConnectionImage]
+}
+
+input ProductInput {
+  name: String
+  description: String
+  image: ID
+}
+
+type Query {
+  category(id: ID!): Category
+  categories(sort: String, limit: Int, start: Int, where: JSON): [Category]
+  categoriesConnection(sort: String, limit: Int, start: Int, where: JSON): CategoryConnection
+  post(id: ID!): Post
+  posts(sort: String, limit: Int, start: Int, where: JSON): [Post]
+  postsConnection(sort: String, limit: Int, start: Int, where: JSON): PostConnection
+  product(id: ID!): Product
+  products(sort: String, limit: Int, start: Int, where: JSON): [Product]
+  productsConnection(sort: String, limit: Int, start: Int, where: JSON): ProductConnection
+  tag(id: ID!): Tag
+  tags(sort: String, limit: Int, start: Int, where: JSON): [Tag]
+  tagsConnection(sort: String, limit: Int, start: Int, where: JSON): TagConnection
+  technology(id: ID!): Technologies
+  technologies(sort: String, limit: Int, start: Int, where: JSON): [Technologies]
+  technologiesConnection(sort: String, limit: Int, start: Int, where: JSON): TechnologiesConnection
+  files(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
+  role(id: ID!): UsersPermissionsRole
+
+  """
+  Retrieve all the existing roles. You can't apply filters on this query.
+  """
+  roles(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsRole]
+  rolesConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsRoleConnection
+  user(id: ID!): UsersPermissionsUser
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+  usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
+}
+
+input RoleInput {
+  name: String!
+  description: String
+  type: String
+  users: [ID]
+  permissions: [ID]
+}
+
+type Tag {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  posts(sort: String, limit: Int, start: Int, where: JSON): [Post]
+}
+
+type TagAggregator {
+  count: Int
+}
+
+type TagConnection {
+  values: [Tag]
+  groupBy: TagGroupBy
+  aggregate: TagAggregator
+}
+
+type TagConnection_id {
+  key: ID
+  connection: TagConnection
+}
+
+type TagConnectionCreatedAt {
+  key: DateTime
+  connection: TagConnection
+}
+
+type TagConnectionName {
+  key: String
+  connection: TagConnection
+}
+
+type TagConnectionUpdatedAt {
+  key: DateTime
+  connection: TagConnection
+}
+
+type TagGroupBy {
+  _id: [TagConnection_id]
+  createdAt: [TagConnectionCreatedAt]
+  updatedAt: [TagConnectionUpdatedAt]
+  name: [TagConnectionName]
+}
+
+input TagInput {
+  name: String
+  posts: [ID]
+}
+
+type Technologies {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String
+  ghstars: Int
+  rating: Int
+}
+
+type TechnologiesAggregator {
+  count: Int
+  sum: TechnologiesAggregatorSum
+  avg: TechnologiesAggregatorAvg
+  min: TechnologiesAggregatorMin
+  max: TechnologiesAggregatorMax
+}
+
+type TechnologiesAggregatorAvg {
+  ghstars: Float
+  rating: Float
+}
+
+type TechnologiesAggregatorMax {
+  ghstars: Float
+  rating: Float
+}
+
+type TechnologiesAggregatorMin {
+  ghstars: Float
+  rating: Float
+}
+
+type TechnologiesAggregatorSum {
+  ghstars: Float
+  rating: Float
+}
+
+type TechnologiesConnection {
+  values: [Technologies]
+  groupBy: TechnologiesGroupBy
+  aggregate: TechnologiesAggregator
+}
+
+type TechnologiesConnection_id {
+  key: ID
+  connection: TechnologiesConnection
+}
+
+type TechnologiesConnectionCreatedAt {
+  key: DateTime
+  connection: TechnologiesConnection
+}
+
+type TechnologiesConnectionGhstars {
+  key: Int
+  connection: TechnologiesConnection
+}
+
+type TechnologiesConnectionName {
+  key: String
+  connection: TechnologiesConnection
+}
+
+type TechnologiesConnectionRating {
+  key: Int
+  connection: TechnologiesConnection
+}
+
+type TechnologiesConnectionUpdatedAt {
+  key: DateTime
+  connection: TechnologiesConnection
+}
+
+type TechnologiesGroupBy {
+  _id: [TechnologiesConnection_id]
+  createdAt: [TechnologiesConnectionCreatedAt]
+  updatedAt: [TechnologiesConnectionUpdatedAt]
+  name: [TechnologiesConnectionName]
+  ghstars: [TechnologiesConnectionGhstars]
+  rating: [TechnologiesConnectionRating]
+}
+
+input TechnologiesInput {
+  name: String
+  ghstars: Int
+  rating: Int
+}
+
+input updateCategoryInput {
+  where: InputID
+  data: CategoryInput
+}
+
+type updateCategoryPayload {
+  category: Category
+}
+
+input updatePostInput {
+  where: InputID
+  data: PostInput
+}
+
+type updatePostPayload {
+  post: Post
+}
+
+input updateProductInput {
+  where: InputID
+  data: ProductInput
+}
+
+type updateProductPayload {
+  product: Product
+}
+
+input updateTagInput {
+  where: InputID
+  data: TagInput
+}
+
+type updateTagPayload {
+  tag: Tag
+}
+
+input updateTechnologiesInput {
+  where: InputID
+  data: TechnologiesInput
+}
+
+type updateTechnologiesPayload {
+  technology: Technologies
+}
+
+input updateUserInput {
+  where: InputID
+  data: UserInput
+}
+
+type updateUserPayload {
+  user: UsersPermissionsUser
+}
+
+"""
+The `Upload` scalar type represents a file upload promise that resolves an
+object containing `stream`, `filename`, `mimetype` and `encoding`.
+"""
+scalar Upload
+
+type UploadFile {
+  _id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  hash: String!
+  ext: String
+  mime: String!
+  size: String!
+  url: String!
+  provider: String!
+  related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
+}
+
+type UploadFileAggregator {
+  count: Int
+}
+
+type UploadFileConnection {
+  values: [UploadFile]
+  groupBy: UploadFileGroupBy
+  aggregate: UploadFileAggregator
+}
+
+type UploadFileConnection_id {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionCreatedAt {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionExt {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHash {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionMime {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionName {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSize {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUpdatedAt {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileGroupBy {
+  _id: [UploadFileConnection_id]
+  createdAt: [UploadFileConnectionCreatedAt]
+  updatedAt: [UploadFileConnectionUpdatedAt]
+  name: [UploadFileConnectionName]
+  hash: [UploadFileConnectionHash]
+  ext: [UploadFileConnectionExt]
+  mime: [UploadFileConnectionMime]
+  size: [UploadFileConnectionSize]
+  url: [UploadFileConnectionUrl]
+  provider: [UploadFileConnectionProvider]
+}
+
+input UserInput {
+  username: String!
+  email: String!
+  provider: String
+  role: ID
+}
+
+type UsersPermissionsPermission {
+  _id: ID!
+  type: String!
+  controller: String!
+  action: String!
+  enabled: Boolean!
+  policy: String
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsRole {
+  _id: ID!
+  name: String!
+  description: String
+  type: String
+  users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+  permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
+}
+
+type UsersPermissionsRoleAggregator {
+  count: Int
+}
+
+type UsersPermissionsRoleConnection {
+  values: [UsersPermissionsRole]
+  groupBy: UsersPermissionsRoleGroupBy
+  aggregate: UsersPermissionsRoleAggregator
+}
+
+type UsersPermissionsRoleConnection_id {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionDescription {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionName {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionType {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleGroupBy {
+  _id: [UsersPermissionsRoleConnection_id]
+  name: [UsersPermissionsRoleConnectionName]
+  description: [UsersPermissionsRoleConnectionDescription]
+  type: [UsersPermissionsRoleConnectionType]
+}
+
+type UsersPermissionsUser {
+  _id: ID!
+  username: String!
+  email: String!
+  provider: String
+  role: UsersPermissionsRole
+}
+
+type UsersPermissionsUserAggregator {
+  count: Int
+}
+
+type UsersPermissionsUserConnection {
+  values: [UsersPermissionsUser]
+  groupBy: UsersPermissionsUserGroupBy
+  aggregate: UsersPermissionsUserAggregator
+}
+
+type UsersPermissionsUserConnection_id {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionEmail {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionProvider {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionRole {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUsername {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserGroupBy {
+  _id: [UsersPermissionsUserConnection_id]
+  username: [UsersPermissionsUserConnectionUsername]
+  email: [UsersPermissionsUserConnectionEmail]
+  provider: [UsersPermissionsUserConnectionProvider]
+  role: [UsersPermissionsUserConnectionRole]
+}
