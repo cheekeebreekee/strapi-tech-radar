@@ -1,6 +1,6 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "technologies",
   "info": {
     "name": "technologies",
     "description": ""
@@ -10,13 +10,36 @@
   },
   "attributes": {
     "name": {
-  "type": "string"
-},
-"ghstars": {
-  "type": "integer"
-},
-"rating": {
-  "type": "integer"
-}
+      "type": "string"
+    },
+    "ghstars": {
+      "type": "integer"
+    },
+    "rating": {
+      "type": "integer"
+    },
+    "pros": {
+      "type": "text"
+    },
+    "cons": {
+      "type": "text"
+    },
+    "feedback": {
+      "type": "enumeration",
+      "enum": [
+        "Recomend",
+        "Better dont use",
+        " Not recomend"
+      ]
+    },
+    "additionalCharacteristics": {
+      "type": "json"
+    },
+    "usagePerMonth": {
+      "type": "integer"
+    },
+    "comparison": {
+      "type": "json"
+    }
   }
 }

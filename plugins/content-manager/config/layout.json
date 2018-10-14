@@ -32,5 +32,27 @@
         "appearance": ""
       }
     }
+  },
+  "technologies": {
+    "attributes": {
+      "pros": {
+        "appearance": ""
+      },
+      "cons": {
+        "appearance": ""
+      },
+      "feedback": {
+        "appearance": ""
+      },
+      "additionalCharacteristics": {
+        "appearance": ""
+      },
+      "usagePerMonth": {
+        "appearance": ""
+      },
+      "comparison": {
+        "appearance": ""
+      }
+    }
   }
 }
