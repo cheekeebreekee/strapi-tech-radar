@@ -40,6 +40,9 @@
     },
     "comparison": {
       "type": "json"
+    },
+    "githubApiRoute": {
+      "type": "string"
     }
   }
 }

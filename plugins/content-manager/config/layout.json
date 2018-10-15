@@ -52,6 +52,9 @@
       },
       "comparison": {
         "appearance": ""
+      },
+      "githubApiRoute": {
+        "appearance": ""
       }
     }
   }

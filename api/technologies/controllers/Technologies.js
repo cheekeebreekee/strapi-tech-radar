@@ -1,4 +1,7 @@
 'use strict';
+const fetch = require("node-fetch");
+const GITHUB_TOKEN = '576fe97a164a55ed3caf93e5acc234b7cdbc9852';
+const GITHUB_API_URL = 'https://api.github.com'
 
 /**
  * Technologies.js controller
@@ -16,9 +19,9 @@ module.exports = {
 
   find: async (ctx) => {
     if (ctx.query._q) {
-      return strapi.services.technologies.search(ctx.query);
+      return strapi.services.technologies.search(ctx.query)
     } else {
-      return strapi.services.technologies.fetchAll(ctx.query);
+      return strapi.services.technologies.fetchAll(ctx.query)
     }
   },
 
@@ -33,7 +36,11 @@ module.exports = {
       return ctx.notFound();
     }
 
-    return strapi.services.technologies.fetch(ctx.params);
+    let strapiDbRecord = await strapi.services.technologies.fetch(ctx.params);
+    let githubResponse = await fetch(`${GITHUB_API_URL}/repos/${strapiDbRecord.githubApiRoute}?${GITHUB_TOKEN}`);
+    githubResponse = await githubResponse.json();
+    
+    return Object.assign({}, strapiDbRecord, githubResponse);
   },
 
   /**
