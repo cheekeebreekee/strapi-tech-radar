@@ -1,7 +1,21 @@
 'use strict';
 const fetch = require("node-fetch");
+const googleTrends = require('google-trends-api');
 const GITHUB_TOKEN = '576fe97a164a55ed3caf93e5acc234b7cdbc9852';
 const GITHUB_API_URL = 'https://api.github.com'
+
+const getInfoFromGoogleTrends = async ({ 
+    keyword, 
+    technology, 
+    startTime, 
+    endTime 
+  }) => await googleTrends.interestByRegion({
+    keyword: keyword,
+    technology: technology,
+    startTime: startTime, 
+    endTime: endTime
+});
+
 
 /**
  * Technologies.js controller
@@ -37,10 +51,18 @@ module.exports = {
     }
 
     let strapiDbRecord = await strapi.services.technologies.fetch(ctx.params);
+    let splittedGoogleKeyword = strapiDbRecord.githubApiRoute.split('/')[strapiDbRecord.githubApiRoute.split('/').length - 1]
+    let googleTrendsResponse = await getInfoFromGoogleTrends({
+      keyword: splittedGoogleKeyword,
+      technology: 77,
+      startTime: new Date('2018-10-15'), 
+      endTime: new Date('2018-10-23'),
+      granularTimeResolution: false
+    });
     let githubResponse = await fetch(`${GITHUB_API_URL}/repos/${strapiDbRecord.githubApiRoute}?${GITHUB_TOKEN}`);
     githubResponse = await githubResponse.json();
     
-    return Object.assign({}, strapiDbRecord, githubResponse);
+    return Object.assign({}, strapiDbRecord, githubResponse, JSON.parse(googleTrendsResponse));
   },
 
   /**
