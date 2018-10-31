@@ -178,7 +178,7 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 """
 scalar JSON
 
-union Morph = Category | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnection_id | CategoryConnectionCreatedAt | CategoryConnectionUpdatedAt | CategoryConnectionName | Post | createPostPayload | updatePostPayload | deletePostPayload | PostConnection | PostAggregator | PostGroupBy | PostConnection_id | PostConnectionCreatedAt | PostConnectionUpdatedAt | PostConnectionTitle | PostConnectionContent | PostConnectionCategory | Product | createProductPayload | updateProductPayload | deleteProductPayload | ProductConnection | ProductAggregator | ProductGroupBy | ProductConnection_id | ProductConnectionCreatedAt | ProductConnectionUpdatedAt | ProductConnectionName | ProductConnectionDescription | ProductConnectionImage | Tag | createTagPayload | updateTagPayload | deleteTagPayload | TagConnection | TagAggregator | TagGroupBy | TagConnection_id | TagConnectionCreatedAt | TagConnectionUpdatedAt | TagConnectionName | Technologies | createTechnologiesPayload | updateTechnologiesPayload | deleteTechnologiesPayload | TechnologiesConnection | TechnologiesAggregator | TechnologiesAggregatorSum | TechnologiesAggregatorAvg | TechnologiesAggregatorMin | TechnologiesAggregatorMax | TechnologiesGroupBy | TechnologiesConnection_id | TechnologiesConnectionCreatedAt | TechnologiesConnectionUpdatedAt | TechnologiesConnectionName | TechnologiesConnectionGhstars | TechnologiesConnectionRating | TechnologiesConnectionPros | TechnologiesConnectionCons | TechnologiesConnectionFeedback | TechnologiesConnectionAdditionalCharacteristics | TechnologiesConnectionUsagePerMonth | TechnologiesConnectionComparison | TechnologiesConnectionGithubApiRoute | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole
+union Morph = Category | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnection_id | CategoryConnectionCreatedAt | CategoryConnectionUpdatedAt | CategoryConnectionName | Post | createPostPayload | updatePostPayload | deletePostPayload | PostConnection | PostAggregator | PostGroupBy | PostConnection_id | PostConnectionCreatedAt | PostConnectionUpdatedAt | PostConnectionTitle | PostConnectionContent | PostConnectionCategory | Product | createProductPayload | updateProductPayload | deleteProductPayload | ProductConnection | ProductAggregator | ProductGroupBy | ProductConnection_id | ProductConnectionCreatedAt | ProductConnectionUpdatedAt | ProductConnectionName | ProductConnectionDescription | ProductConnectionImage | Tag | createTagPayload | updateTagPayload | deleteTagPayload | TagConnection | TagAggregator | TagGroupBy | TagConnection_id | TagConnectionCreatedAt | TagConnectionUpdatedAt | TagConnectionName | Technologies | createTechnologiesPayload | updateTechnologiesPayload | deleteTechnologiesPayload | TechnologiesConnection | TechnologiesAggregator | TechnologiesAggregatorSum | TechnologiesAggregatorAvg | TechnologiesAggregatorMin | TechnologiesAggregatorMax | TechnologiesGroupBy | TechnologiesConnection_id | TechnologiesConnectionCreatedAt | TechnologiesConnectionUpdatedAt | TechnologiesConnectionName | TechnologiesConnectionGhstars | TechnologiesConnectionRating | TechnologiesConnectionFeedback | TechnologiesConnectionAdditionalCharacteristics | TechnologiesConnectionUsagePerMonth | TechnologiesConnectionComparison | TechnologiesConnectionGithubApiRoute | TechnologiesConnectionPros | TechnologiesConnectionCons | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionRole
 
 type Mutation {
   createCategory(input: createCategoryInput): createCategoryPayload
@@ -426,13 +426,13 @@ type Technologies {
   name: String
   ghstars: Int
   rating: Int
-  pros: String
-  cons: String
   feedback: ENUM_TECHNOLOGIES_FEEDBACK
   additionalCharacteristics: String
   usagePerMonth: Int
   comparison: String
   githubApiRoute: String
+  pros: String
+  cons: String
 }
 
 type TechnologiesAggregator {
@@ -545,26 +545,26 @@ type TechnologiesGroupBy {
   name: [TechnologiesConnectionName]
   ghstars: [TechnologiesConnectionGhstars]
   rating: [TechnologiesConnectionRating]
-  pros: [TechnologiesConnectionPros]
-  cons: [TechnologiesConnectionCons]
   feedback: [TechnologiesConnectionFeedback]
   additionalCharacteristics: [TechnologiesConnectionAdditionalCharacteristics]
   usagePerMonth: [TechnologiesConnectionUsagePerMonth]
   comparison: [TechnologiesConnectionComparison]
   githubApiRoute: [TechnologiesConnectionGithubApiRoute]
+  pros: [TechnologiesConnectionPros]
+  cons: [TechnologiesConnectionCons]
 }
 
 input TechnologiesInput {
   name: String
   ghstars: Int
   rating: Int
-  pros: String
-  cons: String
   feedback: ENUM_TECHNOLOGIES_FEEDBACK
   additionalCharacteristics: String
   usagePerMonth: Int
   comparison: String
   githubApiRoute: String
+  pros: String
+  cons: String
 }
 
 input updateCategoryInput {

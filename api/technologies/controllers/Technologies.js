@@ -16,7 +16,6 @@ const getInfoFromGoogleTrends = async ({
     endTime: endTime
 });
 
-
 /**
  * Technologies.js controller
  *

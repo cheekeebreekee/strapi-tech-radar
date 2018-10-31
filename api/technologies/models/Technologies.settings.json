@@ -18,12 +18,6 @@
     "rating": {
       "type": "integer"
     },
-    "pros": {
-      "type": "text"
-    },
-    "cons": {
-      "type": "text"
-    },
     "feedback": {
       "type": "enumeration",
       "enum": [
@@ -43,6 +37,12 @@
     },
     "githubApiRoute": {
       "type": "string"
+    },
+    "pros": {
+      "type": "text"
+    },
+    "cons": {
+      "type": "text"
     }
   }
 }

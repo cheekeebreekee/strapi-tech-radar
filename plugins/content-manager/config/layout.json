@@ -55,6 +55,21 @@
       },
       "githubApiRoute": {
         "appearance": ""
+      },
+      "security": {
+        "appearance": ""
+      },
+      "ecosystem": {
+        "appearance": ""
+      },
+      "dom": {
+        "appearance": ""
+      },
+      "routing": {
+        "appearance": ""
+      },
+      "platform": {
+        "appearance": ""
       }
     }
   }
